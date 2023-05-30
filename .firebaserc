@@ -1,7 +1,7 @@
 {
   "projects": {
-    "default": "kalakriti-seller-studio",
-    "dev": "kalakriti-seller-studio-dev"
+    "default": "kalakriti-admin-studio",
+    "dev": "kalakriti-admin-studio-dev"
   },
   "targets": {},
   "etags": {}
