@@ -147,8 +147,8 @@ function NavBar() {
               <Link
                 className="nav-link"
                 aria-current="page"
-                to="/products"
-                title="Products"
+                to="/sellers"
+                title="Sellers"
               >
                 <FontAwesomeIcon
                   icon={faUsers}
@@ -162,8 +162,8 @@ function NavBar() {
               <Link
                 className="nav-link"
                 aria-current="page"
-                to="/orders"
-                title="Orders"
+                to="/customers"
+                title="Customers"
               >
                 <FontAwesomeIcon
                   icon={faUserGroup}

@@ -27,6 +27,8 @@ import ErrorPage from "./pages/error_page/ErrorPage";
 import Banners from "./pages/Banners";
 import Categories, { SubCategories } from "./pages/Categories";
 import CategoryProducts from "./pages/CategoryProducts";
+import Sellers from "./pages/Sellers";
+import Customers from "./pages/Customers";
 
 export const appName = import.meta.env.VITE_APP_NAME;
 
@@ -154,20 +156,60 @@ const App = () => {
               </RequireAuth>
             }
           />
-          <Route path="/categories" element={<Categories />} />
+          <Route
+            path="/categories"
+            element={
+              <RequireAuth>
+                <Categories />
+              </RequireAuth>
+            }
+          />
           <Route
             path="/categories/:categoryId/subcategories"
-            element={<SubCategories />}
+            element={
+              <RequireAuth>
+                <SubCategories />
+              </RequireAuth>
+            }
           />
 
           <Route
             path="/categories/:categoryId"
-            element={<CategoryProducts type="category" />}
+            element={
+              <RequireAuth>
+                <CategoryProducts type="category" />
+              </RequireAuth>
+            }
           />
           <Route
             path="/subcategories/:subcategoryId"
-            element={<CategoryProducts type="subcategory" />}
+            element={
+              <RequireAuth>
+                <CategoryProducts type="subcategory" />
+              </RequireAuth>
+            }
           />
+
+          <Route
+            exact
+            path="/sellers"
+            element={
+              <RequireAuth>
+                <Sellers />
+              </RequireAuth>
+            }
+          />
+
+          <Route
+            exact
+            path="/customers"
+            element={
+              <RequireAuth>
+                <Customers />
+              </RequireAuth>
+            }
+          />
+
           <Route path="*" element={<ErrorPage />} />
         </Routes>
       </BrowserRouter>
