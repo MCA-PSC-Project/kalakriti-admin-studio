@@ -7,7 +7,11 @@ function Banners() {
     <>
       <NavBar />
       <h1>Banners</h1>
-      <BannerCarouselAdmin />
+      <BannerCarouselAdmin
+        onBannersLoad={(index, bannerId) => {
+          console.log({index, bannerId});
+        }}
+      />
     </>
   );
 }
