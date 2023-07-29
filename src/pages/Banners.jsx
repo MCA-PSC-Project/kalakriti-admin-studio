@@ -92,10 +92,14 @@ function Banner({ banner }) {
             </div>
             {editMode ? (
               <>
-                <button type="button" className="btn btn-primary">
+                <button
+                  type="button"
+                  className="btn btn-primary"
+                  onClick={() => {}}
+                >
                   Save
                 </button>
-                 
+
                 <button
                   type="button"
                   className="btn btn-secondary"
@@ -103,7 +107,7 @@ function Banner({ banner }) {
                 >
                   Cancel
                 </button>
-                 
+
                 <input
                   type="file"
                   accept=".jpg,.jpeg,.png,.gif,.bmp"
