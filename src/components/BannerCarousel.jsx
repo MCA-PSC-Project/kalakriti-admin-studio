@@ -1,167 +1,106 @@
-import banner1 from "../assets/banner1.jpg";
-import banner2 from "../assets/banner2.jpg";
-import banner3 from "../assets/banner3.jpg";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faArrowUpRightDots } from "@fortawesome/free-solid-svg-icons";
 import { useEffect, useState } from "react";
 import api from "../utils/api";
 import { Link } from "react-router-dom";
+import Loading from "./loading/Loading"; // import the Loading component
 
 function BannerCarousel() {
+  const [isLoading, setIsLoading] = useState(true); // add a state variable to track the loading status
+  const [bannersList, setBannersList] = useState([]);
+  useEffect(() => {
+    api
+      .get(`/banners`)
+      .then((response) => {
+        setBannersList(response.data === null ? [] : response.data);
+        console.log(response.data);
+        setIsLoading(false); // set isLoading to false when the data has been fetched
+      })
+      .catch((err) => {
+        console.error(err);
+        setIsLoading(false); // set isLoading to false even if there is an error
+      });
+  }, []);
+  const elements = [];
+
+  for (let index = 0; index < bannersList.length; index++) {
+    elements.push(
+      <button
+        type="button"
+        data-bs-target="#myCarousel"
+        data-bs-slide-to={index}
+        className={index === 0 ? "active" : ""}
+        aria-label={"Slide " + (index + 1)}
+        aria-current={index === 0 ? "true" : "false"}
+      ></button>
+    );
+  }
   return (
-    <div id="myCarouselExampleIndicators" className="carousel slide">
-      <div className="carousel-indicators">
-        <button
-          type="button"
-          data-bs-target="#myCarouselExampleIndicators"
-          data-bs-slide-to="0"
-          className="active"
-          aria-label="Slide 1"
-          aria-current="true"
-        ></button>
-        <button
-          type="button"
-          data-bs-target="#myCarouselExampleIndicators"
-          data-bs-slide-to="1"
-          aria-label="Slide 2"
-          className=""
-        ></button>
-        <button
-          type="button"
-          data-bs-target="#myCarouselExampleIndicators"
-          data-bs-slide-to="2"
-          aria-label="Slide 3"
-          className=""
-        ></button>
-      </div>
-      <div className="carousel-inner">
-        <div className="carousel-item active">
-          <img
-            src={banner1}
-            className="d-block w-100"
-            alt="..."
-            style={{ width: "100%", height: "500px" }}
-          />
-          <div class="carousel-caption d-none d-md-block">
-            <button
-              type="button"
-              style={{
-                fontFamily: "Impact, fantasy",
-                fontSize: "20px",
-                backgroundColor: "black",
-              }}
-              class="btn btn-primary"
-            >
-              Sign Up Today
-            </button>
-            <h5
-              style={{
-                fontFamily: "Stencil Std, fantasy",
-                fontSize: "40px",
-                WebkitTextStroke: "1px black",
-                WebkitTextFillColor: "white",
-              }}
-            >
-              you are just one click away!!
-            </h5>
-            <p
-              style={{
-                fontFamily: "Stencil Std, fantasy",
-                fontSize: "40px",
-                WebkitTextStroke: "1px white",
-                WebkitTextFillColor: "black",
-              }}
-            >
-              Grow your bussiness with us &nbsp;
-              <FontAwesomeIcon
-                icon={faArrowUpRightDots}
-                size="2xs"
-                beat
-                style={{ color: "#121212" }}
-              />
-            </p>
+    <>
+      {isLoading ? ( // display the Loading component while the data is being fetched
+        <Loading />
+      ) : (
+        <div id="myCarousel" className="carousel slide" data-bs-ride="carousel">
+          <div className="carousel-indicators">{elements}</div>
+          <div className="carousel-inner">
+            {bannersList.map((banner, index) => {
+              return (
+                <div
+                  className={
+                    index === 0 ? "carousel-item active" : "carousel-item"
+                  }
+                >
+                  <a href={banner.redirect_url} title="">
+                    <img
+                      src={banner.media.path}
+                      className="d-block w-100"
+                      alt="banner"
+                      style={{ width: "100%", height: "400px" }}
+                    />
+                  </a>
+                  {/* <div className="container">
+            <div className="carousel-caption text-start">
+              <h1>Example headline.</h1>
+              <p>
+                Some representative placeholder content for the first slide of
+                the carousel.
+              </p>
+              <p>
+                <a className="btn btn-lg btn-primary" href="#">
+                  Sign up today
+                </a>
+              </p>
+            </div>
+          </div> */}
+                </div>
+              );
+            })}
           </div>
+          <button
+            className="carousel-control-prev"
+            type="button"
+            data-bs-target="#myCarousel"
+            data-bs-slide="prev"
+          >
+            <span
+              className="carousel-control-prev-icon"
+              aria-hidden="true"
+            ></span>
+            <span className="visually-hidden">Previous</span>
+          </button>
+          <button
+            className="carousel-control-next"
+            type="button"
+            data-bs-target="#myCarousel"
+            data-bs-slide="next"
+          >
+            <span
+              className="carousel-control-next-icon"
+              aria-hidden="true"
+            ></span>
+            <span className="visually-hidden">Next</span>
+          </button>
         </div>
-        <div className="carousel-item ">
-          <img
-            src={banner2}
-            className="d-block w-100"
-            alt="..."
-            style={{ width: "100%", height: "500px" }}
-          />
-          <div class="carousel-caption d-none d-md-block">
-            <h5
-              style={{
-                fontFamily: "Stencil Std, fantasy",
-                fontSize: "40px",
-                WebkitTextStroke: "1px black",
-                WebkitTextFillColor: "white",
-              }}
-            >
-              Touching lives with business!
-            </h5>
-            <p
-              style={{
-                fontFamily: "Stencil Std, fantasy",
-                fontSize: "40px",
-                WebkitTextStroke: "1px black",
-                WebkitTextFillColor: "orange",
-              }}
-            >
-              #AasaanHaiBadhna
-            </p>
-          </div>
-        </div>
-        <div className="carousel-item">
-          <img
-            src={banner3}
-            className="d-block w-100"
-            alt="..."
-            style={{ width: "100%", height: "500px" }}
-          />
-          <div class="carousel-caption d-none d-md-block">
-            <h5
-              style={{
-                fontFamily: "Stencil Std, fantasy",
-                fontSize: "40px",
-                WebkitTextStroke: "1px white",
-                WebkitTextFillColor: "black",
-              }}
-            >
-              Supporting Local Business
-            </h5>
-            <p
-              style={{
-                fontFamily: "Stencil Std, fantasy",
-                fontSize: "40px",
-                WebkitTextStroke: "1px black",
-                WebkitTextFillColor: "yellow",
-              }}
-            >
-              Shop Local. We're In This Together
-            </p>
-          </div>
-        </div>
-      </div>
-      <button
-        className="carousel-control-prev"
-        type="button"
-        data-bs-target="#myCarouselExampleIndicators"
-        data-bs-slide="prev"
-      >
-        <span className="carousel-control-prev-icon" aria-hidden="true"></span>
-        <span className="visually-hidden">Previous</span>
-      </button>
-      <button
-        className="carousel-control-next"
-        type="button"
-        data-bs-target="#myCarouselExampleIndicators"
-        data-bs-slide="next"
-      >
-        <span className="carousel-control-next-icon" aria-hidden="true"></span>
-        <span className="visually-hidden">Next</span>
-      </button>
-    </div>
+      )}
+    </>
   );
 }
 

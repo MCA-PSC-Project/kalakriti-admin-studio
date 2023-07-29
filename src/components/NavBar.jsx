@@ -114,8 +114,8 @@ function NavBar() {
               <Link
                 className="nav-link"
                 aria-current="page"
-                to="/products"
-                title="Products"
+                to="/banners"
+                title="Banners"
               >
                 <FontAwesomeIcon
                   icon={faSignsPost}

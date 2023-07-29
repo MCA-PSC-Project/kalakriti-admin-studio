@@ -24,6 +24,7 @@ import { useState } from "react";
 import EditProductForm from "./pages/EditProductForm";
 import SearchResultsPage from "./pages/SearchResultsPage";
 import ErrorPage from "./pages/error_page/ErrorPage";
+import Banners from "./pages/Banners";
 
 export const appName = import.meta.env.VITE_APP_NAME;
 
@@ -142,6 +143,15 @@ const App = () => {
           />
 
           <Route path="/search-results" element={<SearchResultsPage />} />
+          <Route
+            exact
+            path="/banners"
+            element={
+              <RequireAuth>
+                <Banners />
+              </RequireAuth>
+            }
+          />
           <Route path="*" element={<ErrorPage />} />
         </Routes>
       </BrowserRouter>
