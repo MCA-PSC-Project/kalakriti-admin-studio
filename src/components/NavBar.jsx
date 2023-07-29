@@ -8,6 +8,9 @@ import {
   faCartShopping,
   faHeart,
   faUser,
+  faUsers,
+  faUserGroup,
+  faSignsPost,
   faGear,
   faMagnifyingGlass,
   faBell,
@@ -76,7 +79,7 @@ function NavBar() {
               Dashboard
             </li>
 
-            <li className="nav-item me-3">
+            {/* <li className="nav-item me-3">
               <Link
                 className="nav-link"
                 aria-current="page"
@@ -105,7 +108,55 @@ function NavBar() {
                 />
               </Link>
               Orders
+            </li> */}
+
+            <li className="nav-item me-3">
+              <Link
+                className="nav-link"
+                aria-current="page"
+                to="/products"
+                title="Products"
+              >
+                <FontAwesomeIcon
+                  icon={faSignsPost}
+                  size="xl"
+                  style={{ color: "#d741e1" }}
+                />
+              </Link>
+              Banners
             </li>
+
+            <li className="nav-item me-3">
+              <Link
+                className="nav-link"
+                aria-current="page"
+                to="/products"
+                title="Products"
+              >
+                <FontAwesomeIcon
+                  icon={faUsers}
+                  size="xl"
+                  style={{ color: "#5587dd" }}
+                />
+              </Link>
+              Sellers
+            </li>
+            <li className="nav-item me-3">
+              <Link
+                className="nav-link"
+                aria-current="page"
+                to="/orders"
+                title="Orders"
+              >
+                <FontAwesomeIcon
+                  icon={faUserGroup}
+                  size="xl"
+                  style={{ color: "#2a8d31" }}
+                />
+              </Link>
+              Customers
+            </li>
+
             <li className="nav-item me-3">
               <Link
                 className="nav-link"
