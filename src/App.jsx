@@ -47,16 +47,16 @@ const App = () => {
     <div className="App">
       <BrowserRouter>
         <Routes>
-          <Route exact path="/" element={<LandingPage />} />
           <Route
             exact
-            path="/home"
+            path="/"
             element={
               <RequireAuth>
                 <Home />
               </RequireAuth>
             }
           />
+          <Route exact path="/landing-page" element={<LandingPage />} />
           <Route exact path="/login" element={<Login />} />
           <Route
             path="/login/mobile"
@@ -155,8 +155,11 @@ const App = () => {
             }
           />
           <Route path="/categories" element={<Categories />} />
-          <Route path="/categories/:categoryId/subcategories" element={<SubCategories />} />
-          
+          <Route
+            path="/categories/:categoryId/subcategories"
+            element={<SubCategories />}
+          />
+
           <Route
             path="/categories/:categoryId"
             element={<CategoryProducts type="category" />}
