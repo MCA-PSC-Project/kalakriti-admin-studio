@@ -30,11 +30,7 @@ function Banners() {
         <>
           <NavBar />
           <h1>Banners</h1>
-          <BannerCarouselAdmin
-            onBannersLoad={(index, bannerId) => {
-              console.log({ index, bannerId });
-            }}
-          />
+          <BannerCarouselAdmin />
         </>
       )}
       {bannersList && bannersList.length > 0 ? (

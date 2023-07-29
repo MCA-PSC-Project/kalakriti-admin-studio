@@ -25,6 +25,8 @@ import EditProductForm from "./pages/EditProductForm";
 import SearchResultsPage from "./pages/SearchResultsPage";
 import ErrorPage from "./pages/error_page/ErrorPage";
 import Banners from "./pages/Banners";
+import Categories, { SubCategories } from "./pages/Categories";
+import CategoryProducts from "./pages/CategoryProducts";
 
 export const appName = import.meta.env.VITE_APP_NAME;
 
@@ -151,6 +153,17 @@ const App = () => {
                 <Banners />
               </RequireAuth>
             }
+          />
+          <Route path="/categories" element={<Categories />} />
+          <Route path="/categories/:categoryId/subcategories" element={<SubCategories />} />
+          
+          <Route
+            path="/categories/:categoryId"
+            element={<CategoryProducts type="category" />}
+          />
+          <Route
+            path="/subcategories/:subcategoryId"
+            element={<CategoryProducts type="subcategory" />}
           />
           <Route path="*" element={<ErrorPage />} />
         </Routes>

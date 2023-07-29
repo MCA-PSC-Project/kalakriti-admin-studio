@@ -3,7 +3,7 @@ import api from "../utils/api";
 import { Link } from "react-router-dom";
 import Loading from "./loading/Loading"; // import the Loading component
 
-function BannerCarouselAdmin({ onBannersLoad }) {
+function BannerCarouselAdmin() {
   const [isLoading, setIsLoading] = useState(true); // add a state variable to track the loading status
   const [bannersList, setBannersList] = useState([]);
   useEffect(() => {
@@ -43,7 +43,6 @@ function BannerCarouselAdmin({ onBannersLoad }) {
           <div className="carousel-inner">
             {bannersList && bannersList.length > 0 ? (
               bannersList.map((banner, index) => {
-                onBannersLoad(index, banner.id);
                 return (
                   <div
                     className={

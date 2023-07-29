@@ -1,5 +1,4 @@
 import React from "react";
-import BannerCarouselAdmin from "../components/BannerCarouselAdmin";
 import Footer from "../components/Footer";
 import Logo from "../assets/logo.jpeg";
 import { appName } from "../App";
@@ -14,13 +13,14 @@ import feature5 from "../assets/feature5.png";
 import sellerCraft1 from "../assets/sellerCraft1.jpg";
 import sellerCraft2 from "../assets/sellerCraft2.jpg";
 import sellerCraft3 from "../assets/sellerCraft3.jpg";
+import BannerCarousel from "../components/BannerCarousel";
 
 function LandingPage() {
   return (
     <>
       <LandingPageNavBar />
       <main>
-        <BannerCarouselAdmin />
+        <BannerCarousel />
         {/* Wrap the rest of the page in another container to center all the content. */}
         <div className="container marketing" style={{ marginTop: 40 }}>
           {/* Three columns of text below the carousel */}

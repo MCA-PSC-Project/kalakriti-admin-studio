@@ -69,6 +69,7 @@ function ProductHorizontalCard({
               <button
                 type="button"
                 className="btn btn-primary me-2"
+                disabled={true}
                 onClick={onAddToCart}
               >
                 Add To Cart
@@ -77,6 +78,7 @@ function ProductHorizontalCard({
               <button
                 type="button"
                 className="btn btn-success me-2"
+                disabled={true}
                 onClick={(event) => {
                   event.stopPropagation();
                   navigate("/checkout", {

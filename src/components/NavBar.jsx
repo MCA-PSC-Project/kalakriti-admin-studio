@@ -11,6 +11,7 @@ import {
   faUsers,
   faUserGroup,
   faSignsPost,
+  faLayerGroup,
   faGear,
   faMagnifyingGlass,
   faBell,
@@ -109,6 +110,22 @@ function NavBar() {
               </Link>
               Orders
             </li> */}
+
+            <li className="nav-item me-3">
+              <Link
+                className="nav-link"
+                aria-current="page"
+                to="/categories"
+                title="Categories"
+              >
+                <FontAwesomeIcon
+                  icon={faLayerGroup}
+                  size="xl"
+                  style={{ color: "#df3c2a" }}
+                />
+              </Link>
+              Categories
+            </li>
 
             <li className="nav-item me-3">
               <Link
