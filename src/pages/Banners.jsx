@@ -57,12 +57,13 @@ function Banners() {
 
 function Banner({ banner }) {
   const [editMode, setEditMode] = useState(false);
+  const [image, setImage] = useState(banner.media.path);
   return (
     <>
       <div style={{ display: "flex" }}>
         <div style={{ width: "50%" }}>
           <img
-            src={banner.media.path}
+            src={image}
             className="d-block w-100"
             alt="banner"
             style={{ width: "100%", height: "400px" }}
@@ -115,6 +116,19 @@ function Banner({ banner }) {
                 >
                   Cancel
                 </button>
+                 
+                <input
+                  type="file"
+                  accept=".jpg,.jpeg,.png,.gif,.bmp"
+                  onChange={(e) => {
+                    const file = e.target.files[0];
+                    const reader = new FileReader();
+                    reader.onloadend = () => {
+                      setImage(reader.result);
+                    };
+                    reader.readAsDataURL(file);
+                  }}
+                />
               </>
             ) : (
               <>
