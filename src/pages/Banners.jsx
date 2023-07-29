@@ -72,7 +72,10 @@ function Banner({ banner }) {
         <div style={{ width: "50%" }}>
           <form>
             <div className="form-group">
-              <label>Label 1</label>
+              <label>Banner id: {banner.id}</label>
+            </div>
+            <div className="form-group">
+              <label>Redirect type</label>
               <input
                 type="text"
                 className="form-control"
@@ -80,23 +83,7 @@ function Banner({ banner }) {
               />
             </div>
             <div className="form-group">
-              <label>Label 2</label>
-              <input
-                type="text"
-                className="form-control"
-                disabled={!editMode}
-              />
-            </div>
-            <div className="form-group">
-              <label>Label 3</label>
-              <input
-                type="text"
-                className="form-control"
-                disabled={!editMode}
-              />
-            </div>
-            <div className="form-group">
-              <label>Label 4</label>
+              <label>Redirect URL</label>
               <input
                 type="text"
                 className="form-control"
