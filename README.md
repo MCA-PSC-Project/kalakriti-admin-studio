@@ -1,4 +1,4 @@
-# KalaKriti App Seller Studio  
+# KalaKriti App Admin Studio  
 
 ## Deployment instruction
 

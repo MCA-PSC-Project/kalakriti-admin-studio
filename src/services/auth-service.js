@@ -1,50 +1,62 @@
-import { baseUrl } from "../utils/axios-client";
+import api from "../utils/api";
+import TokenService from "./token-service";
 
-export async function login(email, password) {
-  try {
-    const response = await axios.post(`${baseUrl}/auth/login`, {
+const register = (data) => {
+  return api.post("/admins/auth/register", data);
+};
+
+const login = (email, password) => {
+  return api
+    .post("/admins/auth/login", {
       email,
       password,
-    });
-
-    if (response.status === 202) {
-      localStorage.setItem("access_token", response.data.access_token);
-      localStorage.setItem("refresh_token", response.data.refresh_token);
-    //   return getUser();
-    }
-  } catch (_) {
-    return null;
-  }
-}
-
-export async function refresh() {
-  try {
-    const response = await axios.post(
-      `${baseUrl}/auth/refresh`,
-      {},
-      {
-        headers: {
-          Authorization: "Bearer " + getRefreshToken(),
-        },
+    })
+    .then((response) => {
+      if (response.status === 202 && response.data.access_token) {
+        TokenService.setUser(response.data);
       }
-    );
-    localStorage.setItem("access_token", response.data.access_token);
-    localStorage.setItem("refresh_token", response.data.refresh_token);
-  } catch (e) {
-    logout();
-  }
-}
+      // when the user is not verified
+      else if (response.status === 201) {
+        window.alert(response.data);
+        return;
+      }
+      return response;
+    });
+};
 
-export function getAccessToken() {
-  return localStorage.getItem("access_token");
-}
+const loginMotp = (mobileNo, motp) => {
+  return api
+    .post("/admins/auth/motp/login", {
+      mobile_no: mobileNo,
+      motp,
+    })
+    .then((response) => {
+      if (response.status === 202 && response.data.access_token) {
+        TokenService.setUser(response.data);
+      }
+      // // when the user is not verified
+      // else if (response.status === 201) {
+      //   window.alert(response.data);
+      //   return;
+      // }
+      return response;
+    });
+};
 
-export function getRefreshToken() {
-  return localStorage.getItem("refresh_token");
-}
+const logout = () => {
+  TokenService.removeUser();
+};
 
-export function logout() {
-  localStorage.removeItem("access_token");
-  localStorage.removeItem("refresh_token");
-  //   clearUser();
-}
+const getCurrentUser = () => {
+  return JSON.parse(localStorage.getItem("admin"));
+};
+
+const AuthService = {
+  register,
+  login,
+  loginMotp,
+  logout,
+  getCurrentUser,
+};
+
+export default AuthService;

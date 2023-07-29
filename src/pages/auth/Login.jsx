@@ -6,7 +6,6 @@ import AuthService from "../../services/auth-service";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 // import useAuth from "../hooks/useAuth";
 import AuthConsumer from "../../hooks/useAuth";
-import Alert from "../../components/Alert";
 
 function Login() {
   const [email, setEmail] = useState(null);
@@ -48,8 +47,8 @@ function Login() {
     const success = await login(email, password);
     if (success) {
       // Login was successful
-      // navigate("/");
-      navigate(state?.path || "/");
+      // navigate("/home");
+      navigate(state?.path || "/home");
     } else {
       // Login failed
       console.log("Login failed");
@@ -66,13 +65,12 @@ function Login() {
             alt="Logo"
             style={{ width: 200, height: 200 }}
           />
-          <h3 className="h3 mb-3 fw-normal">KalaKriti</h3>
+          <h3 className="h3 mb-3 fw-normal">KalaKriti Admin Studio</h3>
           <h2 className="h2 mb-2 fw-normal">Please login</h2>
           {loginUnsuccessful && (
-            // <div className="alert alert-danger" role="alert">
-            //   Login unsuccessful!!
-            // </div>
-            <Alert alertType="danger" message="Login Unsuccessful!!" />
+            <div className="alert alert-danger" role="alert">
+              Login unsuccessful!!
+            </div>
           )}
           <div className="form-floating">
             <input
