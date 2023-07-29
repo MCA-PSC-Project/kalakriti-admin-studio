@@ -1,5 +1,5 @@
 import React from "react";
-import BannerCarousel from "../components/BannerCarousel";
+import BannerCarouselAdmin from "../components/BannerCarouselAdmin";
 import Footer from "../components/Footer";
 import Logo from "../assets/logo.jpeg";
 import { appName } from "../App";
@@ -20,7 +20,7 @@ function LandingPage() {
     <>
       <LandingPageNavBar />
       <main>
-        <BannerCarousel />
+        <BannerCarouselAdmin />
         {/* Wrap the rest of the page in another container to center all the content. */}
         <div className="container marketing" style={{ marginTop: 40 }}>
           {/* Three columns of text below the carousel */}

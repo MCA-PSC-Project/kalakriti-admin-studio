@@ -3,7 +3,7 @@ import api from "../utils/api";
 import { Link } from "react-router-dom";
 import Loading from "./loading/Loading"; // import the Loading component
 
-function BannerCarousel() {
+function BannerCarouselAdmin() {
   const [isLoading, setIsLoading] = useState(true); // add a state variable to track the loading status
   const [bannersList, setBannersList] = useState([]);
   useEffect(() => {
@@ -108,4 +108,4 @@ function BannerCarousel() {
   );
 }
 
-export default BannerCarousel;
+export default BannerCarouselAdmin;
