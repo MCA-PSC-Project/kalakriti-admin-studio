@@ -38,7 +38,7 @@ const Customers = () => {
                     <div className="col-sm-2">
                       <img
                         src={customer.dp.path ?? profilePicSample}
-                        alt={customer.name}
+                        alt={customer.first_name}
                         className="img-fluid rounded-circle"
                       />
                     </div>
