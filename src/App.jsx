@@ -25,10 +25,11 @@ import EditProductForm from "./pages/EditProductForm";
 import SearchResultsPage from "./pages/SearchResultsPage";
 import ErrorPage from "./pages/error_page/ErrorPage";
 import Banners from "./pages/Banners";
-import Categories, { SubCategories } from "./pages/Categories";
-import CategoryProducts from "./pages/CategoryProducts";
+import Categories, { SubCategories } from "./pages/categories/Categories";
+import CategoryProducts from "./pages/categories/CategoryProducts";
 import Sellers from "./pages/Sellers";
 import Customers from "./pages/Customers";
+import AddCategory from "./pages/categories/AddCategory";
 
 export const appName = import.meta.env.VITE_APP_NAME;
 
@@ -178,6 +179,14 @@ const App = () => {
             element={
               <RequireAuth>
                 <CategoryProducts type="category" />
+              </RequireAuth>
+            }
+          />
+          <Route
+            path="/categories/add"
+            element={
+              <RequireAuth>
+                <AddCategory />
               </RequireAuth>
             }
           />

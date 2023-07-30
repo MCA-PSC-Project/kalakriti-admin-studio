@@ -1,10 +1,11 @@
 import React, { useEffect, useState } from "react";
-import NavBar from "../components/NavBar";
-import api from "../utils/api";
+import NavBar from "../../components/NavBar";
+import api from "../../utils/api";
 import { Link, useLocation, useNavigate, useParams } from "react-router-dom";
-import Loading from "../components/loading/Loading"; // import the Loading component
+import Loading from "../../components/loading/Loading"; // import the Loading component
 
 function Categories() {
+  const navigate = useNavigate();
   const [isLoading, setIsLoading] = useState(true); // add a state variable to track the loading status
   const [categoriesList, setCategoriesList] = useState([]);
   useEffect(() => {
@@ -29,7 +30,22 @@ function Categories() {
       ) : (
         <>
           <NavBar />
-          <h1 style={{ textAlign: "center" }}>Categories</h1>
+
+          <h1 style={{ backgroundColor: "#FC4FCE", textAlign: "center" }}>
+            Categories
+          </h1>
+          <div className="new-button">
+            <button
+              type="button"
+              className="raise btn btn-warning btn-lg"
+              onClick={() => {
+                navigate(`/categories/add`);
+              }}
+            >
+              + Add New Category
+            </button>
+          </div>
+
           <div className="album py-5 bg-body-tertiary">
             <div className="container">
               <div className="row row-cols-1 row-cols-sm-2 row-cols-md-4 g-3">

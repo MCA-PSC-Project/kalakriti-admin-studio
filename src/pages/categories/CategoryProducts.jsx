@@ -1,13 +1,13 @@
 import React, { useEffect, useState } from "react";
-import NavBar from "../components/NavBar";
-import Footer from "../components/Footer";
-import Logo from "../assets/logo.jpeg";
-import Rating from "../components/Rating";
+import NavBar from "../../components/NavBar";
+import Footer from "../../components/Footer";
+import Logo from "../../assets/logo.jpeg";
+import Rating from "../../components/Rating";
 import { Link, Navigate, useNavigate, useParams } from "react-router-dom";
-import api from "../utils/api";
-import Toast from "../components/Toast";
-import ProductHorizontalCard from "../components/ProductHorizontalCard";
-import Loading from "../components/loading/Loading"; // import the Loading component
+import api from "../../utils/api";
+import Toast from "../../components/Toast";
+import ProductHorizontalCard from "../../components/ProductHorizontalCard";
+import Loading from "../../components/loading/Loading"; // import the Loading component
 
 function CategoryProducts({ type }) {
   const navigate = useNavigate();
