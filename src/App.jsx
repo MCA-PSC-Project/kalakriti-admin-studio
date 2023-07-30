@@ -30,6 +30,7 @@ import CategoryProducts from "./pages/categories/CategoryProducts";
 import Sellers from "./pages/Sellers";
 import Customers from "./pages/Customers";
 import AddCategory from "./pages/categories/AddCategory";
+import AddSubcategory from "./pages/categories/AddSubcategory ";
 
 export const appName = import.meta.env.VITE_APP_NAME;
 
@@ -195,6 +196,14 @@ const App = () => {
             element={
               <RequireAuth>
                 <CategoryProducts type="subcategory" />
+              </RequireAuth>
+            }
+          />
+          <Route
+            path="/subcategories/add"
+            element={
+              <RequireAuth>
+                <AddSubcategory />
               </RequireAuth>
             }
           />

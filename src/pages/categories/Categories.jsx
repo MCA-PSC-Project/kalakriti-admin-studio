@@ -123,6 +123,7 @@ function CategoryCard({ categoryId, imgSrc, cardTitle, subCategories }) {
 }
 
 export function SubCategories() {
+  const navigate = useNavigate();
   const [isLoading, setIsLoading] = useState(true); // add a state variable to track the loading status
   const { categoryId } = useParams();
 
@@ -160,7 +161,26 @@ export function SubCategories() {
       ) : (
         <>
           <NavBar />
-          <h1 style={{ textAlign: "center" }}>Subcategories</h1>
+
+          <h1 style={{ backgroundColor: "#FC4FCE", textAlign: "center" }}>
+            Subcategories
+          </h1>
+          <div className="new-button">
+            <button
+              type="button"
+              className="raise btn btn-warning btn-lg"
+              onClick={() => {
+                navigate(`/subcategories/add`, {
+                  state: {
+                    categoryId: categoryId,
+                  },
+                });
+              }}
+            >
+              + Add New Subcategory
+            </button>
+          </div>
+
           <div className="album py-5 bg-body-tertiary">
             <div className="container">
               <div className="row row-cols-1 row-cols-sm-2 row-cols-md-4 g-3">
