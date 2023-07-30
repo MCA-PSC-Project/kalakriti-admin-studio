@@ -24,13 +24,14 @@ import { useState } from "react";
 import EditProductForm from "./pages/EditProductForm";
 import SearchResultsPage from "./pages/SearchResultsPage";
 import ErrorPage from "./pages/error_page/ErrorPage";
-import Banners from "./pages/Banners";
+import Banners from "./pages/banners/Banners";
 import Categories, { SubCategories } from "./pages/categories/Categories";
 import CategoryProducts from "./pages/categories/CategoryProducts";
 import Sellers from "./pages/Sellers";
 import Customers from "./pages/Customers";
 import AddCategory from "./pages/categories/AddCategory";
 import AddSubcategory from "./pages/categories/AddSubcategory ";
+import AddBanner from "./pages/banners/AddBanner";
 
 export const appName = import.meta.env.VITE_APP_NAME;
 
@@ -158,6 +159,15 @@ const App = () => {
               </RequireAuth>
             }
           />
+          <Route
+            path="/banners/add"
+            element={
+              <RequireAuth>
+                <AddBanner />
+              </RequireAuth>
+            }
+          />
+
           <Route
             path="/categories"
             element={
