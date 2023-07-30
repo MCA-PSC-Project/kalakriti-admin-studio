@@ -1,4 +1,5 @@
 import React, { useRef, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import NavBar from "../../components/NavBar";
 import { compressImage } from "../../utils/common";
 import api from "../../utils/api";
@@ -9,6 +10,7 @@ function AddCategory() {
   const [selectedImage, setSelectedImage] = useState(null);
   const [imageURL, setImageURL] = useState(null);
 
+  const navigate = useNavigate();
   const [showModal, setShowModal] = useState(true);
   const [modalProperties, setModalProperties] = useState({});
 
@@ -26,8 +28,11 @@ function AddCategory() {
           body={modalProperties.body}
           cancelButtonPresent={modalProperties.cancelButtonPresent}
           onClose={() => {
-            setShowModal(false);
-            window.location.reload();
+            if (modalProperties.onClose) {
+              modalProperties.onClose();
+            } else {
+              // setShowModal(false);
+            }
           }}
         />
       )}
@@ -73,7 +78,6 @@ function AddCategory() {
             className="btn btn-primary"
             data-bs-toggle="modal"
             data-bs-target="#modal"
-            
             onClick={async (event) => {
               event.preventDefault();
               console.log(categoryNameRef.current.value);
@@ -118,7 +122,8 @@ function AddCategory() {
                               cancelButtonPresent: false,
                               onClose: () => {
                                 setShowModal(false);
-                                window.location.reload();
+                                // window.location.reload();
+                                navigate("/categories");
                               },
                             });
                           }
