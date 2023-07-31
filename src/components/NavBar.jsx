@@ -24,8 +24,10 @@ import {
   faClockRotateLeft,
 } from "@fortawesome/free-solid-svg-icons";
 import { appName } from "../App";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import AuthConsumer from "../hooks/useAuth";
+import UserInfoService from "../services/user-info-service";
+import profilePicSample from "../assets/profilePicSample.jpg";
 
 function NavBar() {
   const [iconsHoveredState, setIconsHoveredState] = useState({
@@ -54,6 +56,17 @@ function NavBar() {
     logout();
     navigate("/");
   };
+
+  const [adminInfo, setAdminInfo] = useState({});
+
+  useEffect(() => {
+    if (isLoggedIn) {
+      const adminInfo = UserInfoService.getUserInfo("admin_info");
+      console.log(adminInfo);
+      setAdminInfo(adminInfo);
+    }
+  }, []);
+
   return (
     <div className="px-3 py-2 text-bg-white border-bottom">
       <div className="container">
@@ -191,21 +204,21 @@ function NavBar() {
             </li>
             <li className="nav-item me-3 mt-2">
               <div className="dropdown">
-                <a
-                  href="#"
+                <Link
+                  to=""
                   className="d-block link-body-emphasis text-decoration-none dropdown-toggle"
                   data-bs-toggle="dropdown"
                   aria-expanded="false"
                 >
                   <img
-                    src={Logo}
+                    src={adminInfo?.dpPath ?? profilePicSample}
                     alt="mdo"
                     width={32}
                     height={32}
                     className="rounded-circle"
                   />
-                  seller_name
-                </a>
+                  {adminInfo?.firstName ?? "admin"}
+                </Link>
                 <ul className="dropdown-menu text-small">
                   <li>
                     <Link className="dropdown-item" to="/">
