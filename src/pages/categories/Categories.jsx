@@ -96,7 +96,12 @@ function CategoryCard({ categoryId, imgSrc, cardTitle, subCategories }) {
             });
           } else {
             console.log("subcategories does not exists");
-            navigate(`/categories/${categoryId}`);
+            navigate(`/subcategories/add`, {
+              state: {
+                categoryId: categoryId,
+              },
+            });
+            // navigate(`/categories/${categoryId}`);
           }
         }}
       >
@@ -115,6 +120,20 @@ function CategoryCard({ categoryId, imgSrc, cardTitle, subCategories }) {
             >
               {cardTitle}
             </Link>
+            <button
+              type="button"
+              className="raise btn btn-warning btn-lg"
+              onClick={() => {
+                navigate(`/subcategories/add`, {
+                  state: {
+                    categoryId: categoryId,
+                  },
+                });
+              }}
+            >
+              + Add New Subcategory
+            </button>
+            {/* <button type="button" onClick={ navigate(`/subcategories/add`)}>Add SubCategory</button> */}
           </h5>
         </div>
       </div>
